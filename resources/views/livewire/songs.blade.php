@@ -54,7 +54,7 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->artist }}</td>
             <td><span class="badge badge-{{ $item->status->style }}">{{ $item->status->name }}</span></td>
-            <td>{{ $item->user->name }}</td>
+            <td>{{ getUsername($item->created_by) }}</td>
             <td class="">
                     <button class="btn btn-sm btn-primary"
                         wire:click.prevent="updateShowModal({{ $item->id }})">Edit
@@ -72,7 +72,7 @@
     </tbody>
 </table>
 
-    {!! $data->links() !!}     
+    {{-- {!! $data->links() !!}      --}}
 </div>
     <div class="modal" @if ($showModal) style="display:block" @endif>
         <div class="modal-dialog" role="document">

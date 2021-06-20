@@ -2,7 +2,7 @@
     <ul class="c-sidebar-nav">
 
         <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-                <a class="c-sidebar-nav-link" href="http://songs.test/">
+                <a class="c-sidebar-nav-link" href="/">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="http://songs.test/vendors/@coreui/icons/svg/free.svg#cil-library-add"></use>
                 </svg>

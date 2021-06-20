@@ -21,7 +21,6 @@ class Setlists extends Component
 
     public function mount()
     {
-
         $this->current_list = NULL;
 
         // Resets the pagination after reloading the page

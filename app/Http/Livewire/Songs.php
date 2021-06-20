@@ -13,7 +13,7 @@ use Livewire\WithPagination;
 
 class Songs extends Component
 {
-    use WithPagination;
+    //use WithPagination;
     public $sortColumn = 'name';
     public $sortDirection = 'asc';
     public $showModal = false;
@@ -44,13 +44,14 @@ class Songs extends Component
             'acoustic' => 'nullable',
             'notes' => 'nullable',
             'status_id' => 'nullable',
+            'created_by' => 'nullable',
         ];
     }
 
     public function mount()
     {
         // Resets the pagination after reloading the page
-        $this->resetPage();
+        //$this->resetPage();
     }
 
     public function create()
@@ -63,7 +64,7 @@ class Songs extends Component
 
     public function read()
     {
-        return Song::orderBy($this->sortColumn, $this->sortDirection)->paginate(15);
+        return Song::orderBy($this->sortColumn, $this->sortDirection)->get();
     }
 
     public function edit($songId)
@@ -121,7 +122,8 @@ class Songs extends Component
         $this->acoustic = $data->acoustic;
         $this->notes = $data->notes;
         $this->status_id = $data->status_id;
-        $this->created_by = Auth::user()->id;
+        $this->created_by = $data->created_by;
+        //$this->created_by = Auth::user()->id;
         
     }
 
@@ -137,7 +139,7 @@ class Songs extends Component
             'acoustic' => $this->acoustic,
             'notes' => $this->notes,
             'status_id' => $this->status_id,
-            'created_by' => Auth::user()->id,
+            'created_by' => auth()->id,
         ];
     }
 
