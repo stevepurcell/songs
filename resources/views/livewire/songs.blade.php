@@ -1,11 +1,24 @@
 <div>
 <div class="card">
     <div class="card-header bg-light">
-        <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-between">
             <h3>Songs</h3> 
-                <div class="ml-auto">
-                    <a wire:click.prevent="createShowModal" href="#" class="btn btn-primary">New Song</a>
-                </div>
+            <a wire:click.prevent="showStatus('0')" href="#" class="btn btn-dark">All Songs 
+                <span class="badge badge-light">{{ getStatusCount(0) }}</span>
+            </a>
+            <a wire:click.prevent="showStatus('1')" href="#" class="btn btn-info">New Songs
+                <span class="badge badge-light">{{ getStatusCount(1) }}</span>
+            </a>
+            <a wire:click.prevent="showStatus('2')" href="#" class="btn btn-warning">In Process
+                <span class="badge badge-light">{{ getStatusCount(2) }}</span>
+            </a>
+            <a wire:click.prevent="showStatus('3')" href="#" class="btn btn-primary">Ready
+                <span class="badge badge-light">{{ getStatusCount(3) }}</span>
+            </a>
+            <a wire:click.prevent="showStatus('4')" href="#" class="btn btn-success">Wish List
+                <span class="badge badge-light">{{ getStatusCount(4) }}</span>
+            </a>
+            <a wire:click.prevent="createShowModal" href="#" class="btn btn-secondary">New Song</a>
         </div>
     </div>
     <div class="card-body">

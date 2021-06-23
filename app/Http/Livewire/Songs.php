@@ -18,6 +18,7 @@ class Songs extends Component
     public $sortDirection = 'asc';
     public $showModal = false;
     public $showDeleteModal = false;
+    public $displayStatus = 0;
     public $songId;
     public $name;
     public $artist;
@@ -64,7 +65,17 @@ class Songs extends Component
 
     public function read()
     {
-        return Song::orderBy($this->sortColumn, $this->sortDirection)->get();
+        if ($this->displayStatus == 0) {
+            return Song::orderBy($this->sortColumn, $this->sortDirection)->with('user')->with('status')->get();
+        }
+        else {
+            return Song::orderBy($this->sortColumn, $this->sortDirection)
+                    ->with('user')
+                    ->with('status')
+                    ->where('status_id', $this->displayStatus)
+                    ->get();   
+        }
+        
     }
 
     public function edit($songId)
@@ -85,7 +96,7 @@ class Songs extends Component
     {
         Song::destroy($this->songId);
         $this->showDeleteModal = false;
-        $this->resetPage();
+        //$this->resetPage();
     }
 
     public function createShowModal()
@@ -139,8 +150,13 @@ class Songs extends Component
             'acoustic' => $this->acoustic,
             'notes' => $this->notes,
             'status_id' => $this->status_id,
-            'created_by' => auth()->id,
+            'created_by' => Auth::user()->id,
         ];
+    }
+
+    public function showStatus($status)
+    {
+        return $this->displayStatus = $status;
     }
 
     public function sortByColumn($column)
